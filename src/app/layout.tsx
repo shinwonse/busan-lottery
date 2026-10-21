@@ -49,7 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <footer className="mt-10 text-center text-sm text-muted">
             Developed by{" "}
             <a href="https://github.com/shinwonse" target="_blank" rel="noopener noreferrer" className="font-bold text-sea-700 underline underline-offset-4">
-              @shinwonse
+              @wonse
             </a>
           </footer>
         </div>
