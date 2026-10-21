@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Bukangi } from "@/components/Bukangi";
 import { BallRow } from "@/components/Ball";
-import { Card, Disclaimer, SectionTitle } from "@/components/ui";
+import { Card, SectionTitle } from "@/components/ui";
 import { coldNumbers, hotNumbers, numberStats } from "@/lib/analysis";
 import { draws, latestDraw, nextDrawInfo, toCompact } from "@/lib/draws";
 import { formatDate, formatWon } from "@/lib/format";
@@ -80,7 +80,6 @@ export default function HomePage() {
         📊 전체 통계 보러 가기
       </Link>
 
-      <Disclaimer />
     </main>
   );
 }

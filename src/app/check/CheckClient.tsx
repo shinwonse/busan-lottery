@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { Bukangi } from "@/components/Bukangi";
 import { Ball, BallRow } from "@/components/Ball";
-import { Card, Disclaimer, SectionTitle } from "@/components/ui";
+import { Card, SectionTitle } from "@/components/ui";
 import { NUMBERS, rankOf } from "@/lib/analysis";
 import { fromCompact } from "@/lib/draws";
 import { ballColor, formatShortDate } from "@/lib/format";
@@ -147,7 +147,6 @@ export function CheckClient({ past }: { past: CompactDraw[] }) {
         </>
       )}
 
-      <Disclaimer />
     </main>
   );
 }

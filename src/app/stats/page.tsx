@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Bukangi } from "@/components/Bukangi";
 import { Ball, BallRow } from "@/components/Ball";
-import { Bar, Card, Disclaimer, SectionTitle } from "@/components/ui";
+import { Bar, Card, SectionTitle } from "@/components/ui";
 import {
   biggestJackpots,
   coldNumbers,
@@ -224,7 +224,6 @@ export default function StatsPage() {
         </ol>
       </Card>
 
-      <Disclaimer />
     </main>
   );
 }

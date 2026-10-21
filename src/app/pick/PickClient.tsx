@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Bukangi, type BukangiMood } from "@/components/Bukangi";
 import { BallRow } from "@/components/Ball";
-import { Card, Disclaimer, SectionTitle } from "@/components/ui";
+import { Card, SectionTitle } from "@/components/ui";
 import type { NumberStat } from "@/lib/analysis";
 import { formatDate } from "@/lib/format";
 import { generateSet, STRATEGIES, type Pick, type Strategy } from "@/lib/generator";
@@ -96,7 +96,7 @@ export function PickClient({ stats, past, next }: { stats: NumberStat[]; past: C
             onClick={draw}
             className="w-full rounded-2xl bg-coral py-4 text-xl font-black text-white shadow-lg active:scale-[0.98]"
           >
-            {picks ? "🦈 다시 뽑기" : "🦈 부캉이야, 뽑아줘!"}
+            {picks ? "🦈 다시 뽑기" : "🦈 부캉아, 뽑아줘!"}
           </button>
         </div>
       </Card>
@@ -132,7 +132,6 @@ export function PickClient({ stats, past, next }: { stats: NumberStat[]; past: C
         </Card>
       )}
 
-      <Disclaimer />
     </main>
   );
 }

@@ -23,13 +23,3 @@ export function Bar({ value, max, label, color = "var(--sea-500)" }: { value: nu
     </div>
   );
 }
-
-export function Disclaimer() {
-  return (
-    <p className="mt-6 rounded-xl bg-sand/80 px-4 py-3 text-center text-sm leading-relaxed text-sea-900">
-      로또는 매회 독립 추첨이라 과거 번호로 다음 번호를 맞힐 수는 없어요.
-      <br />
-      부캉이 추천은 <b>순전히 재미</b>로만 봐 주세요. 🦈
-    </p>
-  );
-}
