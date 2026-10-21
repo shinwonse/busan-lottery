@@ -49,7 +49,7 @@ export default function HomePage() {
           <SectionTitle sub={`${next.round}회 · ${formatDate(next.date)} 추첨`}>🦈 이번 주 부캉이 추천</SectionTitle>
           <Bukangi size={72} mood="wow" />
         </div>
-        <BallRow numbers={weekly.numbers} size="lg" />
+        <BallRow numbers={weekly.numbers} bonus={weekly.bonus} bonusLabel="보너스 예상" size="lg" />
         <ul className="mt-3 space-y-1 text-sm text-sea-900">
           {weekly.reasons.map((r) => (
             <li key={r}>· {r}</li>

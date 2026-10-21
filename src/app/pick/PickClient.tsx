@@ -29,7 +29,9 @@ export function PickClient({ stats, past, next }: { stats: NumberStat[]; past: C
 
   async function copy() {
     if (!picks) return;
-    const text = picks.map((p, i) => `${String.fromCharCode(65 + i)}  ${p.numbers.map((n) => String(n).padStart(2, " ")).join(" ")}`).join("\n");
+    const text = picks
+      .map((p, i) => `${String.fromCharCode(65 + i)}  ${p.numbers.map((n) => String(n).padStart(2, " ")).join(" ")}  (보너스 예상 ${p.bonus})`)
+      .join("\n");
     try {
       await navigator.clipboard.writeText(`${next.round}회 부캉이 추천\n${text}`);
       setCopied(true);
@@ -112,7 +114,7 @@ export function PickClient({ stats, past, next }: { stats: NumberStat[]; past: C
                 <div className="flex items-center gap-2">
                   <span className="w-5 shrink-0 text-xl font-black text-sea-700">{String.fromCharCode(65 + i)}</span>
                   <div className="min-w-0 flex-1">
-                    <BallRow numbers={p.numbers} />
+                    <BallRow numbers={p.numbers} bonus={p.bonus} bonusLabel="보너스 예상" />
                   </div>
                 </div>
                 <details className="mt-2 text-sm text-muted">
