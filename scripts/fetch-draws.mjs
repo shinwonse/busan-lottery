@@ -100,6 +100,10 @@ async function main() {
   for (let r = 1; r <= latest; r++) if (!have(r)) missing.push(r);
 
   console.log(`최신 회차 ${latest}, 보유 ${byRound.size}회차, 수집 대상 ${missing.length}회차`);
+  if (missing.length === 0 && existing.length > 0) {
+    console.log("새 회차 없음. 파일을 건드리지 않습니다.");
+    return;
+  }
 
   // 빠진 회차들을 10개 단위 요청으로 커버한다.
   // srchDir=center 는 요청 회차 r 기준 r-5..r+4 범위를 돌려주고 양 끝에서는 잘린다.
