@@ -57,7 +57,7 @@ export function BallRow({ numbers, bonus, bonusLabel = "+ 보너스", size = "md
       </div>
       {bonus !== undefined && (
         <div className={`grid grid-cols-6 items-center ${gap}`}>
-          <span className="col-span-2 text-sm font-black text-sea-700" aria-hidden>
+          <span className="col-span-2 whitespace-nowrap text-xs font-black text-sea-700" aria-hidden>
             {bonusLabel}
           </span>
           <Ball n={bonus} size="fluid" bonus delay={animate ? 7 * 70 : 0} />
