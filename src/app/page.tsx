@@ -21,7 +21,7 @@ export default function HomePage() {
         <div>
           <p className="text-sm font-bold text-sea-700">부산 북항에서 온</p>
           <h1 className="text-3xl font-black leading-tight text-sea-900">부캉이 로또</h1>
-          <p className="mt-1 text-sm text-muted">역대 번호 분석 · 이번 주 재미 추천</p>
+          <p className="mt-1 text-sm text-muted">역대 번호 분석 · 이번 주 추천</p>
         </div>
         <Bukangi size={128} mood="happy" className="animate-float -mb-2" />
       </header>

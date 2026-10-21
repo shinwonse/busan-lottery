@@ -12,7 +12,7 @@ const notoKr = Noto_Sans_KR({
 
 export const metadata: Metadata = {
   title: { default: "부캉이 로또", template: "%s | 부캉이 로또" },
-  description: "부산 북항 상어 부캉이와 함께 보는 로또 6/45 역대 당첨번호 분석과 이번 주 재미 추천 번호",
+  description: "부산 북항 상어 부캉이와 함께 보는 로또 6/45 역대 당첨번호 분석과 이번 주 추천 번호",
   applicationName: "부캉이 로또",
 };
 
