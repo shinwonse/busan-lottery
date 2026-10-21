@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Bukangi, type BukangiMood } from "@/components/Bukangi";
+import { DrawOverlay } from "@/components/DrawOverlay";
 import { BallRow } from "@/components/Ball";
 import { Card, SectionTitle } from "@/components/ui";
 import type { NumberStat } from "@/lib/analysis";
@@ -17,15 +18,28 @@ export function PickClient({ stats, past, next }: { stats: NumberStat[]; past: C
   const [picks, setPicks] = useState<Pick[] | null>(null);
   const [runId, setRunId] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [pending, setPending] = useState<{ picks: Pick[]; seed: number } | null>(null);
+  const resultRef = useRef<HTMLElement>(null);
 
   const current = STRATEGIES.find((s) => s.id === strategy)!;
 
   function draw() {
     const seed = (Date.now() ^ Math.floor(Math.random() * 0xffffffff)) >>> 0;
-    setPicks(generateSet(strategy, stats, past, seed, games));
-    setRunId((r) => r + 1);
+    setPending({ picks: generateSet(strategy, stats, past, seed, games), seed });
     setCopied(false);
   }
+
+  const reveal = useCallback(() => {
+    setPicks(pending?.picks ?? null);
+    setPending(null);
+    setRunId((r) => r + 1);
+  }, [pending]);
+
+  useEffect(() => {
+    if (!picks || runId === 0) return;
+    const id = requestAnimationFrame(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    return () => cancelAnimationFrame(id);
+  }, [picks, runId]);
 
   async function copy() {
     if (!picks) return;
@@ -94,15 +108,18 @@ export function PickClient({ stats, past, next }: { stats: NumberStat[]; past: C
           <button
             type="button"
             onClick={draw}
-            className="w-full rounded-2xl bg-coral py-4 text-xl font-black text-white shadow-lg active:scale-[0.98]"
+            disabled={pending !== null}
+            className="w-full rounded-2xl bg-coral py-4 text-xl font-black text-white shadow-lg active:scale-[0.98] disabled:opacity-60"
           >
             {picks ? "🦈 다시 뽑기" : "🦈 부캉아, 뽑아줘!"}
           </button>
         </div>
       </Card>
 
+      {pending && <DrawOverlay seed={pending.seed} onDone={reveal} />}
+
       {picks && (
-        <Card key={runId} className="border-2 border-sea-300">
+        <Card key={runId} ref={resultRef} className="scroll-mt-4 border-2 border-sea-300">
           <SectionTitle sub={current.desc}>
             {current.emoji} {current.name} 결과
           </SectionTitle>

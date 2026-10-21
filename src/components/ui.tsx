@@ -1,7 +1,11 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 
-export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <section className={`card p-5 ${className}`}>{children}</section>;
+export function Card({ children, className = "", ref }: { children: ReactNode; className?: string; ref?: Ref<HTMLElement> }) {
+  return (
+    <section ref={ref} className={`card p-5 ${className}`}>
+      {children}
+    </section>
+  );
 }
 
 export function SectionTitle({ children, sub }: { children: ReactNode; sub?: ReactNode }) {

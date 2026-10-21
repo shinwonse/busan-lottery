@@ -129,3 +129,50 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-float, .animate-pop, .bubble, .wave-strip { animation: none; }
 }
+
+/* ---- 뽑기 오버레이 ---- */
+@keyframes swim {
+  0% { transform: translateX(-140%); }
+  40% { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+@keyframes wag {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(4deg) translateY(-6px); }
+}
+@keyframes tumble {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(var(--dx1), var(--dy1)) rotate(120deg); }
+  50% { transform: translate(var(--dx2), var(--dy2)) rotate(240deg); }
+  75% { transform: translate(var(--dx3), var(--dy3)) rotate(300deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+@keyframes chomp {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+@keyframes dots {
+  0% { content: ""; }
+  33% { content: "."; }
+  66% { content: ".."; }
+  100% { content: "..."; }
+}
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.overlay-in { animation: overlay-in 0.25s ease-out both; }
+.overlay-out { animation: overlay-out 0.35s ease-in both; }
+.animate-swim { animation: swim 2.2s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.animate-wag { animation: wag 0.5s ease-in-out infinite; }
+.animate-chomp { animation: chomp 0.35s ease-in-out 3; }
+.tumble-ball { position: absolute; animation: tumble var(--dur) ease-in-out infinite; }
+.dots::after { content: ""; animation: dots 1.2s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-swim, .animate-wag, .animate-chomp, .tumble-ball, .dots::after { animation: none; }
+}
