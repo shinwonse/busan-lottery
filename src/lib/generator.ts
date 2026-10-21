@@ -11,7 +11,7 @@ export const STRATEGIES: { id: Strategy; name: string; emoji: string; desc: stri
   { id: "random", name: "완전 랜덤", emoji: "🎲", desc: "아무 조건 없이 공을 뽑습니다. 사실 확률은 이게 제일 정직합니다." },
 ];
 
-export type Pick = { numbers: number[]; bonus: number; reasons: string[] };
+export type Pick = { numbers: number[]; reasons: string[] };
 
 /** 결정적 난수 (mulberry32). 같은 seed면 같은 번호. */
 export function rng(seed: number) {
@@ -112,12 +112,7 @@ export function generatePick(strategy: Strategy, stats: NumberStat[], pastDraws:
     if (passesPattern(numbers)) break;
   }
 
-  // 보너스 예상: 본번호를 제외한 나머지에서 역대 보너스 출현 빈도에 가중치를 둬 1개
-  const bonusW = new Array(46).fill(0);
-  for (const s of stats) if (!numbers.includes(s.n)) bonusW[s.n] = 1 + s.bonusCount / 10;
-  const [bonus] = weightedSample(bonusW, 1, rand);
-
-  return { numbers, bonus, reasons: describe(numbers, stats) };
+  return { numbers, reasons: describe(numbers, stats) };
 }
 
 export function generateSet(strategy: Strategy, stats: NumberStat[], pastDraws: CompactDraw[], seed: number, games = 5): Pick[] {
