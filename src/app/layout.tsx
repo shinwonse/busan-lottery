@@ -44,7 +44,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ko" className={`${notoKr.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <OceanBackground />
-        <div className="relative z-10 mx-auto w-full max-w-md flex-1 px-4 pb-28 pt-4">{children}</div>
+        <div className="relative z-10 mx-auto flex w-full max-w-md flex-1 flex-col px-4 pb-28 pt-4">
+          <div className="flex-1">{children}</div>
+          <footer className="mt-10 text-center text-sm text-muted">
+            Developed by{" "}
+            <a href="https://github.com/shinwonse" target="_blank" rel="noopener noreferrer" className="font-bold text-sea-700 underline underline-offset-4">
+              @shinwonse
+            </a>
+          </footer>
+        </div>
         <BottomNav />
       </body>
     </html>
